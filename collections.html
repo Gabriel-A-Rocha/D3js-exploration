@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>D3 Array API</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      p {
+        font-size: medium;
+        color: orangered;
+        margin: 5px;
+      }
+    </style>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+  </head>
+
+  <body>
+    <h3>D3.js Collections</h3>
+
+    <script>
+      const month = {
+        jan: 1,
+        fev: 2,
+        mar: 3,
+        apr: 4,
+      };
+
+      console.log(d3.keys(month));
+      console.log(d3.values(month));
+      console.log(d3.entries(month));
+
+      const month2 = d3.map([{ name: "jan" }, { name: "feb" }], function (d) {
+        return d.name;
+      });
+
+      console.log(month2.get("jan"));
+      console.log(month2.get("apr"));
+      console.log(month2.has("feb"));
+
+      const map = d3.map().set("fruit", "mango");
+      console.log(map.get("fruit"));
+      console.log(map.remove("fruit"));
+      console.log(map.size());
+      console.log(map.empty());
+
+      const fruits = d3.set().add("mango").add("apple").add("orange");
+      console.log(fruits);
+      console.log(fruits.has("grapes"));
+      console.log(fruits.remove("apple"));
+      console.log(fruits);
+      console.log(fruits.size());
+      console.log(fruits.empty());
+
+      let data = [
+        {
+          color: "red",
+          key: 1,
+        },
+        {
+          color: "green",
+          key: 2,
+        },
+        {
+          color: "blue",
+          key: 75,
+        },
+      ];
+
+      let nest = d3
+        .nest()
+        .key((d) => d.color)
+        .entries(data);
+
+      console.log(nest);
+
+      let filter = nest.filter((d) => d.key === "red");
+      console.log(filter);
+    </script>
+  </body>
+</html>
