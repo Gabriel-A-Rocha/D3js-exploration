@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .arc text {
+        font: 12px arial;
+        text-anchor: middle;
+      }
+
+      .arc path {
+        stroke: #888;
+      }
+
+      .title {
+        fill: #d8d0;
+        font-weight: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <svg width="400" height="400"></svg>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      const svg = d3.select("svg");
+
+      // get svg dimensions and calculate outside radius
+      const width = svg.attr("width"),
+        height = svg.attr("height"),
+        radius = Math.min(width, height) / 2;
+
+      // insert group element to the svg
+      const g = svg
+        .append("g")
+        .attr("transform", `translate("${width / 2}", "${height / 2}"`);
+
+      const color = d3.scaleOrdinal([
+        "gray",
+        "green",
+        "brown",
+        "orange",
+        "yellow",
+        "red",
+        "purple",
+      ]);
+
+      const pie = d3.pie().value((d) => d.percent);
+
+      const path = d3
+        .arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
+
+      const label = d3
+        .arc()
+        .outerRadius(radius)
+        .innerRadius(radius - 80);
+
+      d3.csv("./csv-files/population.csv", (error, data) => {
+        if (error) {
+          throw error;
+        }
+      });
+
+      const arc = g
+        .selectAll(".arc")
+        .data(pie(data))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
+
+      arc
+        .append("path")
+        .attr("d", path)
+        .attr("fill", (d) => color(d.data.states));
+
+      console.log(arc);
+
+      arc
+        .append("text")
+        .attr("transform", (d) => `translate("${label.centroid(d)}"`)
+        .text((d) => d.data.states);
+
+      svg
+        .append("g")
+        .attr("transform", `translate(${width / 2 - 120 + 20})`)
+        .append("text")
+        .text("Top population states in India")
+        .attr("class", "title");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+    <div id="svgcontainer"></div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      // define variables
+      const width = 400,
+        height = 400,
+        data = [10, 40, 30],
+        colors = ["green", "purple", "gold"];
+
+      // create svg container
+      const svg = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 1px grey");
+
+      // append a group element (g) for each data item
+      const g = svg
+        .selectAll("g")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("transform", (d, i) => "translate(0,0)");
+
+      g.append("circle")
+        .attr("cx", (d, i) => i * 75 + 50)
+        .attr("cy", (d, i) => 75)
+        .attr("r", (d) => d * 1.5)
+        .attr("fill", (d, i) => colors[i]);
+
+      // append text
+      g.append("text")
+        .attr("x", (d, i) => i * 75 + 25)
+        .attr("y", 80)
+        .attr("stroke", "grey")
+        .attr("font-size", "10px")
+        .attr("font-family", "sans-serif")
+        .text((d) => d);
+    </script>
+  </body>
+</html>

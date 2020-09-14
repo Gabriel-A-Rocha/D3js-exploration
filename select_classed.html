@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3.js Tutorial</title>
+  </head>
+  <body>
+    <h1>D3.js Tutorial</h1>
+
+    <div class="myclass">Hello world!</div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      // add myanotherclass
+      d3.select(".myclass").classed("myanotherclass", true);
+      // remove myanotherclass
+      d3.select(".myclass").classed("myanotherclass", false);
+      // check class
+      const checkClass = d3.select(".myclass").classed("myanotherclass");
+      alert(checkClass);
+      // toggle class
+      d3.select(".myclass");
+    </script>
+  </body>
+</html>

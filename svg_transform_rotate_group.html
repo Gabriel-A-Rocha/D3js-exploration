@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <svg width="300" height="300" style="border: solid 1px grey">
+      <g transform="translate(60,60) rotate(30)">
+        <rect x="20" y="20" width="60" height="30" fill="green"></rect>
+        <circle cx="120" cy="120" r="30" fill="red"></circle>
+      </g>
+    </svg>
+
+    <div id="svgcontainer"></div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      const width = 400;
+      const height = 400;
+
+      const svg = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 1px grey");
+
+      const group = svg
+        .append("g")
+        .attr("transform", "translate(100,20) rotate(25)");
+
+      const rect = group
+        .append("rect")
+        .attr("x", 40)
+        .attr("y", 40)
+        .attr("width", 140)
+        .attr("height", 90)
+        .attr("fill", "purple");
+
+      const circle = group
+        .append("circle")
+        .attr("cx", 255)
+        .attr("cy", 205)
+        .attr("r", 75)
+        .attr("fill", "teal");
+    </script>
+  </body>
+</html>

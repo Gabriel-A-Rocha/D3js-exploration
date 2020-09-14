@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      svg rect {
+        fill: grey;
+      }
+
+      svg text {
+        fill: rebeccapurple;
+        font: 12px sans-serif;
+        text-anchor: end;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <div id="svgcontainer"></div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      // define variables
+      const data = [10, 5, 12, 15];
+
+      const width = 300,
+        scaleFactor = 20,
+        barHeight = 30;
+
+      // create and append svg container
+      const graph = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", barHeight * data.length);
+
+      const bar = graph
+        .selectAll("g")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("transform", function (d, i) {
+          return "translate(0, " + i * barHeight + ")";
+        });
+
+      bar
+        .append("rect")
+        .attr("width", function (d) {
+          return d * scaleFactor;
+        })
+        .attr("height", barHeight - 1);
+
+      bar
+        .append("text")
+        .attr("x", (d) => d * scaleFactor)
+        .attr("y", barHeight / 2)
+        .attr("dy", ".35em")
+        .attr("dx", "-.5em")
+        .text((d) => d);
+    </script>
+  </body>
+</html>

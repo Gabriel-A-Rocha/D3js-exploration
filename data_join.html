@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3.js Tutorial</title>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <div class="myclass">Hello world!</div>
+
+    <ul id="list">
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+      <li>d</li>
+      <li>e</li>
+    </ul>
+
+    <input
+      type="button"
+      name="Remove"
+      value="Remove fifth value"
+      onclick="javascript:remove()"
+    />
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      const selection = d3
+        .select("#list")
+        .selectAll("li")
+        .data([10, 20, 30, 25, 15])
+        .text((d) => `This is pre-existing element and the value is: ${d}`)
+        .enter()
+        .append("li")
+        .text(
+          (d) => `This is dynalically created element and the value is ${d}`
+        );
+      console.log(selection);
+
+      const remove = () =>
+        d3.selectAll("li").data([10, 20, 30, 15]).exit().remove();
+    </script>
+  </body>
+</html>

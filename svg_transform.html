@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <svg width="400" height="400" style="border: solid 1px grey">
+      <g transform="rotate(30,200,200)">
+        <rect
+          x="10"
+          y="10"
+          width="180"
+          height="80"
+          fill="gold"
+          transform="translate(10, 10)"
+        ></rect>
+
+        <ellipse cx="200" cy="200" rx="90" ry="140" fill="blue"></ellipse>
+      </g>
+    </svg>
+
+    <div id="svgcontainer"></div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      const width = 400;
+      const height = 400;
+
+      // create svg element
+      const svg = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 2px gold");
+
+      // create and append ellipse
+      svg
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 75)
+        .attr("ry", 180)
+        .attr("fill", "red")
+        .attr("transform", "rotate(90, 200, 200)");
+
+      // create svg element
+      const svg2 = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 2px gold")
+        .attr("transform", "rotate(10)");
+
+      // create and append ellipse
+      svg2
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 75)
+        .attr("ry", 180)
+        .attr("fill", "green");
+      svg2
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 75)
+        .attr("ry", 180)
+        .attr("fill", "green")
+        .attr("transform", "rotate(45,200,200)");
+      svg2
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 75)
+        .attr("ry", 180)
+        .attr("fill", "green")
+        .attr("transform", "rotate(90,200,200)");
+      svg2
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 75)
+        .attr("ry", 180)
+        .attr("fill", "green")
+        .attr("transform", "rotate(135,200,200)");
+
+      const svg3 = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 1px grey");
+
+      svg3
+        .append("circle")
+        .attr("cx", 200)
+        .attr("cy", 200)
+        .attr("r", 75)
+        .attr("fill", "pink")
+        .attr("transform", "scale(2) translate(-100, -100)");
+    </script>
+  </body>
+</html>

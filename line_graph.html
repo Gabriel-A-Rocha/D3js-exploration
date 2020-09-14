@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .line {
+        fill: none;
+        stroke: #8888;
+        stroke-width: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      // set graph margins
+      const margin = {
+        top: 20,
+        right: 20,
+        bottom: 30,
+        left: 50,
+      };
+
+      // set graph dimensions
+      const width = 960 - margin.left - margin.right;
+      const height = 500 - margin.top - margin.bottom;
+
+      // set the ranges
+      const x = d3.scaleTime().range([0, width]);
+      const y = d3.scaleLinear().range([height, 0]);
+
+      // define the line
+      const valueline = d3
+        .line()
+        .x((d) => x(d.year))
+        .y((d) => y(d.population));
+
+      // append svg to the page body
+      // append a group element to svg
+      // moves the group to the top left margin
+      const svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+      // get the data
+      d3.csv("data.csv", (error, data) => {
+        if (error) {
+          throw error;
+        }
+        // format data
+        data.forEach((d) => {
+          d.year = d.year;
+          d.population = +d.population;
+        });
+
+        // scale the data range
+        x.domain(d3.extent(data, (d) => d.year));
+        y.domain([0, d3.max(data, (d) => d.population)]);
+
+        svg
+          .append("path")
+          .data([data])
+          .attr("class", "line")
+          .attr("d", valueline);
+
+        svg
+          .append("g")
+          .attr("transform", `translate(0,${height})`)
+          .call(d3.axisBottom(x));
+
+        svg.append("g").call(d3.axisLeft(y));
+      });
+    </script>
+  </body>
+</html>

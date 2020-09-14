@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <div
+      id="svgcontainer"
+      style="border: solid 1px silver; width: 300px; height: 300px"
+    >
+      <!-- <svg width="300" height="300">
+        <line
+          x1="100"
+          y1="100"
+          x2="200"
+          y2="200"
+          style="stroke: #333; stroke-width: 2"
+        ></line>
+      </svg> -->
+    </div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      const width = 300;
+      const height = 300;
+
+      const svg = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      svg
+        .append("line")
+        .attr("x1", 100)
+        .attr("y1", 100)
+        .attr("x2", 200)
+        .attr("y2", 200)
+        .style("stroke", "#555")
+        .style("stroke-width", 2);
+    </script>
+  </body>
+</html>

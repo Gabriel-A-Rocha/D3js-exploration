@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass">D3.js Tutorial</h1>
+
+    <div id="svgcontainer">
+      <svg width="300" height="300" style="border: solid 1px silver">
+        <ellipse cx="150" cy="150" rx="40" ry="100" fill="brown"></ellipse>
+      </svg>
+    </div>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script>
+      const width = 400;
+      const height = 400;
+
+      // create svg element
+      const svg = d3
+        .select("#svgcontainer")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 2px gold");
+
+      // create and append ellipse
+      svg
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 75)
+        .attr("ry", 200)
+        .attr("fill", "gold");
+
+      // create and append second ellipse
+      svg
+        .append("ellipse")
+        .attr("cx", "200")
+        .attr("cy", "200")
+        .attr("rx", 200)
+        .attr("ry", 75)
+        .attr("fill", "red");
+    </script>
+  </body>
+</html>
