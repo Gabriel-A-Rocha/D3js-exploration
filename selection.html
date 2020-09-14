@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3.js Selection API</title>
+  </head>
+  <body>
+    <h1>Text written inside an h1 element</h1>
+
+    <p>Text written inside a p element</p>
+
+    <h3>
+      Parent h3
+      <p>Child p</p>
+    </h3>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+
+    <script>
+      d3.select("p").style("color", "red");
+      d3.selectAll("h3").selectAll("p").append(d3.creator("h4"));
+
+      let data = d3.local();
+      console.log(data);
+    </script>
+  </body>
+</html>
