@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG path line generator</title>
+
+    <style></style>
+  </head>
+  <body>
+    <h2>D3.js Scales API</h2>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v1.min.js"></script>
+    <script>
+      // domain: min and max values of input data
+      // range: output range
+
+      let data = [100, 200, 300, 350, 400, 250];
+      let width = 500,
+        barHeight = 20,
+        margin = 1;
+
+      let scale = d3
+        .scaleLinear()
+        .domain([d3.min(data), d3.max(data)])
+        .range([100, 400]);
+
+      var svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", barHeight * data.length);
+
+      let g = svg
+        .selectAll("g")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("transform", (d, i) => `translate(0, ${i * barHeight})`);
+
+      g.append("rect")
+        .attr("width", (d) => scale(d))
+        .attr("height", barHeight - margin);
+
+      g.append("text")
+        .attr("x", (d) => scale(d))
+        .attr("y", barHeight / 2)
+        .attr("dy", ".35rem")
+        .text((d) => d);
+    </script>
+  </body>
+</html>
